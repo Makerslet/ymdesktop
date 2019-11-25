@@ -1,0 +1,3 @@
+[submodule "libs/ymlcpp"]
+	path = libs/ymlcpp
+	url = https://github.com/Makerslet/ymlcpp
