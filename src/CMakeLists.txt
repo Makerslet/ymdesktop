@@ -18,6 +18,6 @@ file(GLOB_RECURSE TARGET_SRC ${PROJECT_SOURCES}/*.cpp)
 
 
 target_sources(${TARGET_NAME} PUBLIC ${TARGET_SRC} PUBLIC ${TARGET_HDR})
-target_link_libraries(${TARGET_NAME} PUBLIC Qt5::Core Qt5::Network Qt5::Xml)
+target_link_libraries(${TARGET_NAME} PUBLIC ymlcpp Qt5::Core Qt5::Network Qt5::Xml)
 
 
