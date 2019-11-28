@@ -13,9 +13,11 @@ public:
 public slots:
     bool getIsLoggedIn() const;
     void tryToLogIn(const QString&, const QString&);
+    void onAuthorzationResult(bool, const QString&);
 
 signals:
     void isLoggedInChanged();
+    void tryLogIn(const QString&, const QString&);
 
 private:
     bool _isLoggedIn;

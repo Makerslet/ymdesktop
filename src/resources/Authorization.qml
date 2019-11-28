@@ -2,6 +2,9 @@ import QtQuick 2.8
 import QtQuick.Controls 2.5
 
 Rectangle {
+
+    enabled: !userModel.isLoggedIn
+
     Column{
         spacing: 5
         anchors {
@@ -33,6 +36,7 @@ Rectangle {
                 border.width: 1
                 radius: 8
                 TextInput {
+                    id: loginTextInput
                     anchors.fill: parent
                     text: ""
                     font.pixelSize: 20
@@ -64,6 +68,7 @@ Rectangle {
                 border.width: 1
                 radius: 8
                 TextInput {
+                    id: passwordTextInput
                     anchors.fill: parent
                     text: ""
                     font.pixelSize: 20
@@ -78,6 +83,7 @@ Rectangle {
                 flat: true
                 text: "Войти"
                 font.pixelSize: 25
+                onClicked: userModel.tryToLogIn(loginTextInput.text, passwordTextInput.text)
             }
         }
 
