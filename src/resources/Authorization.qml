@@ -3,78 +3,38 @@ import QtQuick.Controls 2.5
 
 Dialog {
     property var authController
+
+    x: (applicationWindow.width - width) / 2
+    y: (applicationWindow.height - height) / 2
+
+    width: 325
+    height: 130
+
     visible: authController ? !authController.loggedIn : false
-    modal: Qt.ApplicationModal
-    contentItem:  Column{
+    modal: true
+    closePolicy: Popup.NoAutoClose
+
+    contentItem: Item {
+        Column{
             spacing: 5
-            anchors {
-                verticalCenter: parent.verticalCenter
-                horizontalCenter: parent.horizontalCenter
-            }
 
-            Rectangle {
+            TextField {
+                id: loginTextInput
                 width: 300
                 height: 30
-
-                Text {
-                    anchors {
-                        left: parent.left
-                        verticalCenter: parent.verticalCenter
-                    }
-
-                    text: "Логин"
-                    font.pixelSize: 25
-                }
-
-                Rectangle {
-                    width: 200
-                    height: parent.height
-                    anchors {
-                        right: parent.right
-                    }
-                    border.color: "lightgreen"
-                    border.width: 1
-                    radius: 8
-                    TextInput {
-                        id: loginTextInput
-                        anchors.fill: parent
-                        text: ""
-                        font.pixelSize: 20
-                    }
-                }
+                placeholderText: "Логин"
+                font.pixelSize: 20
             }
 
-            Rectangle {
+            TextField {
+                id: passwordTextInput
                 width: 300
                 height: 30
-
-                Text {
-                    anchors {
-                        left: parent.left
-                        verticalCenter: parent.verticalCenter
-                    }
-
-                    text: "Пароль"
-                    font.pixelSize: 25
-                }
-
-                Rectangle {
-                    width: 200
-                    height: parent.height
-                    anchors {
-                        right: parent.right
-                    }
-                    border.color: "lightgreen"
-                    border.width: 1
-                    radius: 8
-                    TextInput {
-                        id: passwordTextInput
-                        anchors.fill: parent
-                        text: ""
-                        font.pixelSize: 20
-                    }
-                }
+                placeholderText: "Пароль"
+                echoMode: TextInput.Password
+                font.pixelSize: 20
             }
+
             Rectangle {
                 width: 300
                 height: 30
@@ -82,12 +42,15 @@ Dialog {
                 Button {
                     flat: true
                     text: "Войти"
-                    font.pixelSize: 25
+                    font.pixelSize: 20
                     onClicked: authController.tryToLogIn(loginTextInput.text, passwordTextInput.text)
                 }
             }
-
-
         }
-        //color: userModel.isLoggedIn ? "lightgreen" : "lightgrey"
+
+        Keys.onPressed: {
+            if (event.key === Qt.Key_Enter || event.key === Qt.Key_Return)
+                authController.tryToLogIn(loginTextInput.text, passwordTextInput.text)
+        }
+    }
 }
