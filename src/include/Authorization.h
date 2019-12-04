@@ -10,19 +10,19 @@ class Authorization : public QObject
 {
     Q_OBJECT
 public:
-    Authorization(std::shared_ptr<IUserInfo>, QObject* parent = nullptr);
+    Authorization(bool isLoggedIn, QObject* parent = nullptr);
     Q_PROPERTY(bool loggedIn READ isLoggedIn NOTIFY loggedInChanged)
-
-    Q_INVOKABLE void tryToLogIn(const QString& login, const QString& password);
 
 public slots:
     bool isLoggedIn() const;
+    void loginResponse(bool, const QString&);
 
 signals:
     void loggedInChanged();
+    void tryToLogIn(const QString& login, const QString& password);
 
 private:
-    std::shared_ptr<IUserInfo> _userInfo;
+    bool _isLoggedIn;
 };
 
 #endif // AUTHORIZATION_H

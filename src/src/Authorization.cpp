@@ -1,17 +1,25 @@
 #include "Authorization.h"
 #include <QDebug>
 
-Authorization::Authorization(std::shared_ptr<IUserInfo> userInfo, QObject *parent) :
+Authorization::Authorization(bool isLoggedIn, QObject* parent) :
     QObject(parent),
-    _userInfo(userInfo)
+    _isLoggedIn(isLoggedIn)
 {}
 
 bool Authorization::isLoggedIn() const
 {
-    return _userInfo->isLoggedIn();
+    return _isLoggedIn;
 }
 
-void Authorization::tryToLogIn(const QString& login, const QString& password)
+void Authorization::loginResponse(bool result, const QString& errMessage)
 {
-    qDebug() << "tryToLogIn" << login << password;
+    qDebug() << "auth result" << result << errMessage;
+    if(result != _isLoggedIn)
+    {
+        _isLoggedIn = result;
+        emit loggedInChanged();
+    }
+
+    if(!result)
+        qDebug() << "authorization failed" << "errMessage:" << errMessage;
 }

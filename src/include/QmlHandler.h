@@ -20,6 +20,7 @@ public:
     Authorization* getAuthController();
 
 private:
+    void createConnections();
     void registerQmlTypes();
 
 private:
