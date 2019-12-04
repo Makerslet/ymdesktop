@@ -10,6 +10,7 @@ ApplicationWindow
     height: 480
     title: qsTr("YMDesktop")
 
+
     menuBar: Rectangle {
         height: 50
         color: "lightgreen"
@@ -26,7 +27,7 @@ ApplicationWindow
     }
 
     Authorization {
-        anchors.fill: parent
+        authController: qmlHandler.authController
     }
 
 }
