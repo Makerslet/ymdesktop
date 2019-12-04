@@ -7,10 +7,12 @@
 
 #include <QObject>
 #include <QSharedPointer>
+#include <QThread>
 #include <memory>
 
 class NetworkManager : public INetworkManager
 {
+    Q_OBJECT
 public:
     NetworkManager();
 
@@ -20,7 +22,14 @@ public slots:
 private slots:
     void responseReceived(QSharedPointer<ymlcpp::server_access::IServerResponse>);
 
+signals:
+    void sendRequest(QSharedPointer<ymlcpp::server_access::IServerRequest>);
+
 private:
+    void registerMetaTypes();
+
+private:
+    std::unique_ptr<QThread> _accessManagerThread;
     std::unique_ptr<ymlcpp::server_access::ServerAccessManager> _accessManager;
 };
 

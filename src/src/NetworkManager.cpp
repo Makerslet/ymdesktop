@@ -6,10 +6,18 @@
 #include <QDebug>
 
 NetworkManager::NetworkManager() :
+    _accessManagerThread(std::make_unique<QThread>()),
     _accessManager(std::make_unique<ymlcpp::server_access::ServerAccessManager>())
 {
+    registerMetaTypes();
+
+    _accessManager->moveToThread(_accessManagerThread.get());
     connect(_accessManager.get(), &ymlcpp::server_access::ServerAccessManager::responseReceived,
             this, &NetworkManager::responseReceived);
+    connect(this, &NetworkManager::sendRequest,
+            _accessManager.get(), &ymlcpp::server_access::ServerAccessManager::sendRequest);
+
+    _accessManagerThread->start();
 }
 
 void NetworkManager::tryLogin(const QString& login, const QString& password)
@@ -17,7 +25,7 @@ void NetworkManager::tryLogin(const QString& login, const QString& password)
     auto authCommand = QSharedPointer<ymlcpp::server_access::AuthorizationRequest>::create(
                 login, password);
 
-    _accessManager->sendRequest(authCommand);
+    emit _accessManager->sendRequest(authCommand);
 }
 
 void NetworkManager::responseReceived(QSharedPointer<ymlcpp::server_access::IServerResponse> response)
@@ -30,4 +38,13 @@ void NetworkManager::responseReceived(QSharedPointer<ymlcpp::server_access::ISer
         else
             emit loginResult(false, authResponse->errorDescriprion());
     }
+}
+
+
+void NetworkManager::registerMetaTypes()
+{
+    qRegisterMetaType<QSharedPointer<ymlcpp::server_access::IServerResponse>>
+            ("QSharedPointer<IServerResponse>");
+    qRegisterMetaType<QSharedPointer<ymlcpp::server_access::IServerRequest>>
+            ("QSharedPointer<IServerRequest>");
 }
