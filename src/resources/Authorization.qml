@@ -7,8 +7,8 @@ Dialog {
     x: (applicationWindow.width - width) / 2
     y: (applicationWindow.height - height) / 2
 
-    width: 325
-    height: 130
+    width: 400
+    height: 180
 
     visible: authController ? !authController.loggedIn : false
     modal: true
@@ -21,7 +21,7 @@ Dialog {
             TextField {
                 id: loginTextInput
                 width: 300
-                height: 30
+                height: 45
                 placeholderText: "Логин"
                 font.pixelSize: 20
             }
@@ -29,21 +29,27 @@ Dialog {
             TextField {
                 id: passwordTextInput
                 width: 300
-                height: 30
+                height: 45
                 placeholderText: "Пароль"
                 echoMode: TextInput.Password
                 font.pixelSize: 20
             }
 
-            Rectangle {
-                width: 300
-                height: 30
+            Row {
+                spacing: 50
 
                 Button {
                     flat: true
                     text: "Войти"
                     font.pixelSize: 20
                     onClicked: authController.tryToLogIn(loginTextInput.text, passwordTextInput.text)
+                }
+
+                Button {
+                    flat: true
+                    text: "Отмена"
+                    font.pixelSize: 20
+                    onClicked: applicationWindow.close()
                 }
             }
         }
