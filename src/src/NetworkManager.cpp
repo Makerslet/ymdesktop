@@ -20,6 +20,12 @@ NetworkManager::NetworkManager() :
     _accessManagerThread->start();
 }
 
+NetworkManager::~NetworkManager()
+{
+    _accessManagerThread->exit();
+    _accessManagerThread->wait();
+}
+
 void NetworkManager::tryLogin(const QString& login, const QString& password)
 {
     auto authCommand = QSharedPointer<ymlcpp::server_access::AuthorizationRequest>::create(

@@ -49,7 +49,7 @@ Dialog {
                     flat: true
                     text: "Отмена"
                     font.pixelSize: 20
-                    onClicked: applicationWindow.close()
+                    onClicked: close()
                 }
             }
         }

@@ -9,5 +9,5 @@ Application::Application() :
     _qmlHandler(std::make_shared<QmlHandler>(_coreApp, _qmlAppEngine))
 {
     _qmlAppEngine->rootContext()->setContextProperty("qmlHandler", _qmlHandler.get());
-    _qmlAppEngine->load("qrc:/main.qml");
+    _qmlAppEngine->load("qrc:/Qml/main.qml");
 }

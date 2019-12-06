@@ -15,6 +15,7 @@ class NetworkManager : public INetworkManager
     Q_OBJECT
 public:
     NetworkManager();
+    ~NetworkManager() override;
 
 public slots:
     void tryLogin(const QString&, const QString&) override;
