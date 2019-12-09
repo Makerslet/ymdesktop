@@ -12,6 +12,9 @@ public:
     std::shared_ptr<INetworkManager> networkManager() override;
 
 private:
+    void connectSignals();
+
+private:
     std::shared_ptr<IUserInfo> _currentUser;
     std::shared_ptr<INetworkManager> _netManager;
 };

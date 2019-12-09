@@ -2,6 +2,7 @@
 #define IUSERINFO_H
 
 #include <QObject>
+#include "commands/info_commands/user/UserInfoResponse.h"
 
 class IUserInfo : public QObject
 {
@@ -9,14 +10,13 @@ class IUserInfo : public QObject
 public:
     virtual ~IUserInfo() = default;
     virtual bool isLoggedIn() const = 0;
-//    virtual void logIn(const QString&, const QString&) = 0;
 
-//public slots:
-//    virtual void authorizationResult(bool authorized, QString msg = "") = 0;
+signals:
+    void getUserInfo(const QString&);
 
-//signals:
-//    void loggedInChanged();
-//    void logInSignal(const QString&, const QString&);
+public slots:
+    virtual void oauthTokenReceived(const QString&) = 0;
+    virtual void userInfoReceived(const ymlcpp::server_access::UserInfo&) = 0;
 };
 
 #endif // IUSERINFO_H

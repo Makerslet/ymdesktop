@@ -1,10 +1,10 @@
 #ifndef ICORE_H
 #define ICORE_H
 
-#include <memory>
+#include "INetworkManager.h"
+#include "IUserInfo.h"
 
-class IUserInfo;
-class INetworkManager;
+#include <memory>
 
 class ICore {
 public:

@@ -3,6 +3,14 @@ import QtQuick.Controls 2.1
 
 Rectangle {
     color: "lightgrey"
+    Slider {
+        width: parent.width
+        height: 20
+        from: 1
+        value: 0
+        to: 100
+    }
+
     Row {
         anchors.centerIn: parent
         spacing: 20

@@ -19,12 +19,9 @@ public:
 
 public slots:
     void tryLogin(const QString&, const QString&) override;
+    void getUserInfo(const QString&) override;
 
-private slots:
-    void responseReceived(QSharedPointer<ymlcpp::server_access::IServerResponse>);
-
-signals:
-    void sendRequest(QSharedPointer<ymlcpp::server_access::IServerRequest>);
+    void responseReceived(QSharedPointer<ymlcpp::server_access::IServerResponse>) override;
 
 private:
     void registerMetaTypes();
