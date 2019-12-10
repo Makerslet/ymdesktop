@@ -1,7 +1,7 @@
 #ifndef USER_H
 #define USER_H
 
-#include <IUserInfo.h>
+#include "IUserInfo.h"
 
 class User : public IUserInfo
 {

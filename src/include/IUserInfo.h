@@ -14,6 +14,7 @@ public:
 signals:
     void getUserInfo(const QString&);
 
+
 public slots:
     virtual void oauthTokenReceived(const QString&) = 0;
     virtual void userInfoReceived(const ymlcpp::server_access::UserInfo&) = 0;

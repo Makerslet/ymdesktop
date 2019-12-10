@@ -17,14 +17,24 @@ ApplicationWindow
         authController: qmlHandler.authController
     }
 
+    UserInfoDialog {
+        id: userInfoDialog
+        userInfo: qmlHandler.userHelper
+        Connections {
+            target: header
+            onInfoCliecked: userInfoDialog.visible = true
+        }
+    }
+
     footer: PlayerControl{
         width: applicationWindow.width
         height: 70
     }
 
     header: MainHeader {
+        id: header
         width: applicationWindow.width
-        height: 40
+        height: 50
     }
 
 }

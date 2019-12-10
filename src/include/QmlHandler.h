@@ -3,6 +3,7 @@
 
 #include "ICore.h"
 #include "Authorization.h"
+#include "UserHelper.h"
 
 #include <QQmlApplicationEngine>
 #include <memory>
@@ -15,9 +16,11 @@ public:
                std::shared_ptr<QQmlApplicationEngine>,
                QObject* parent = nullptr);
     Q_PROPERTY(Authorization* authController READ getAuthController CONSTANT)
+    Q_PROPERTY(UserHelper* userHelper   READ getUserHelper CONSTANT)
 
 public:
     Authorization* getAuthController();
+    UserHelper* getUserHelper();
 
 private:
     void createConnections();
@@ -29,7 +32,8 @@ private:
     std::shared_ptr<QQmlApplicationEngine>  _qmlEngine;
 
     // handlers objects
-    std::unique_ptr<Authorization> _authorization;
+    std::unique_ptr<Authorization>  _authorization;
+    std::unique_ptr<UserHelper>     _userInfo;
 };
 
 #endif // QMLHANDLER_H

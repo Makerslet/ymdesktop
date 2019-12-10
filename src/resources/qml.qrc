@@ -5,6 +5,7 @@
     <qresource prefix="/Qml">
         <file alias="main.qml">qml/main.qml</file>
         <file alias="Authorization.qml">qml/Authorization.qml</file>
+        <file alias="UserInfoDialog.qml">qml/UserInfoDialog.qml</file>
         <file alias="PlayerControl.qml">qml/PlayerControl.qml</file>
         <file alias="MainHeader.qml">qml/MainHeader.qml</file>
     </qresource>

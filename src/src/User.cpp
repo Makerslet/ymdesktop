@@ -19,5 +19,4 @@ void User::oauthTokenReceived(const QString& oauthToken)
 void User::userInfoReceived(const ymlcpp::server_access::UserInfo& ui)
 {
     _userInfo = ui;
-    qDebug() << _userInfo.account.firstName;
 }
