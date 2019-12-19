@@ -20,10 +20,6 @@ ApplicationWindow
     UserInfoDialog {
         id: userInfoDialog
         userInfo: qmlHandler.userHelper
-        Connections {
-            target: header
-            onInfoCliecked: userInfoDialog.visible = true
-        }
     }
 
     footer: PlayerControl{
@@ -35,6 +31,11 @@ ApplicationWindow
         id: header
         width: applicationWindow.width
         height: 50
+    }
+
+    Connections {
+        target: header
+        onInfoCliecked: userInfoDialog.visible = true
     }
 
 }

@@ -1,10 +1,13 @@
 #include "UserHelper.h"
 
 UserHelper::UserHelper()
-{}
+{
+    _userInfo.empty = true;
+}
 
 void UserHelper::userInfoReceived(const ymlcpp::server_access::UserInfo& fromYml)
 {
+    _userInfo.empty = false;
     _userInfo.login = fromYml.account.login;
     _userInfo.fullName = fromYml.account.fullName;
     _userInfo.firstNmae = fromYml.account.firstName;
@@ -14,6 +17,11 @@ void UserHelper::userInfoReceived(const ymlcpp::server_access::UserInfo& fromYml
     _userInfo.defaultEmail = fromYml.defaultEmail;
 
     emit uiInfoChanged();
+}
+
+bool UserHelper::getEmpty() const
+{
+    return  _userInfo.empty;
 }
 
 QString UserHelper::getLogin() const

@@ -9,6 +9,7 @@ class UserHelper : public QObject
     Q_OBJECT
 
     struct UiUserInfo {
+        bool empty;
         QString login;
         QString fullName;
         QString firstNmae;
@@ -20,6 +21,7 @@ class UserHelper : public QObject
 
 public:
     UserHelper();
+    Q_PROPERTY(bool empty           READ getEmpty   NOTIFY uiInfoChanged)
     Q_PROPERTY(QString login        READ getLogin   NOTIFY uiInfoChanged)
     Q_PROPERTY(QString fullName     READ getFullName NOTIFY uiInfoChanged)
     Q_PROPERTY(QString firstName    READ getFirstName   NOTIFY uiInfoChanged)
@@ -31,6 +33,7 @@ public:
 public slots:
     void userInfoReceived(const ymlcpp::server_access::UserInfo&);
 
+    bool getEmpty() const;
     QString getLogin() const;
     QString getFullName() const;
     QString getFirstName() const;

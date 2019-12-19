@@ -17,5 +17,6 @@
         <file alias="Play">icons/PlayIcon.svg</file>
         <file alias="Pause">icons/PauseIcon.svg</file>
         <file alias="Stop">icons/StopIcon.svg</file>
+        <file alias="User">icons/person-circle-outline.svg</file>
     </qresource>
 </RCC>

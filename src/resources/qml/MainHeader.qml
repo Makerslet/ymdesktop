@@ -6,12 +6,31 @@ Rectangle {
 
     signal infoCliecked()
 
-    Button {
-        text: "Info"
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: parent.left
-        anchors.leftMargin: 5
-        onClicked: infoCliecked()
+    Row {
+        visible: !qmlHandler.userHelper.empty
+
+        height: parent.height
+        leftPadding: 20
+        spacing: 50
+
+        Image {
+            source: "/Icons/User"
+            sourceSize.width: parent.height
+            sourceSize.height: parent.height
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: infoCliecked()
+            }
+        }
+
+        TextField {
+            id: loginTextInput
+            width: 200
+            height: parent.height
+            placeholderText: "Поиск"
+            font.pixelSize: 18
+        }
     }
 }
 
